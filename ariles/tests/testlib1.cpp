@@ -2,16 +2,25 @@
     @file
     @author  Alexander Sherikov
 
-    @copyright 2018 Alexander Sherikov, Licensed under the Apache License, Version 2.0.
+    @copyright 2017-2018 Alexander Sherikov, Licensed under the Apache License, Version 2.0.
     (see @ref LICENSE or http://www.apache.org/licenses/LICENSE-2.0)
 
     @brief
 */
 
-#pragma once
+
+#include "utility.h"
 
 
-namespace ariles_tests
+#include "ariles/adapters_all.h"
+#include "ariles/ariles.h"
+
+
+// ===============================================================
+// TYPES
+// ===============================================================
+
+namespace testlib1
 {
     /**
      * @brief Verbose definition of a configurable class (with explicit declaration
@@ -44,15 +53,5 @@ namespace ariles_tests
                 integer_ = 10;
                 real_ = 1.33;
             }
-
-
-#ifndef ARILES_TESTS_BOOST_UTF_DISABLED
-            void randomize()
-            {
-                integer_ = GET_RANDOM_INT;
-                real_    = GET_RANDOM_REAL;
-                finalize();
-            }
-#endif
     };
 }
