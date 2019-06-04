@@ -1,8 +1,0 @@
-ros-melodic-ariles-ros (1.1.1-1stretch) stretch; urgency=high
-
-  * Sync to 1.1.1, added README.md
-  * Initial ROS release.
-
- -- Alexander Sherikov <asherikov@yandex.com>  Thu, 18 Apr 2019 22:00:00 -0000
-
-
