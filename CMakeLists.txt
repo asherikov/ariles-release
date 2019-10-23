@@ -1,9 +1,5 @@
-cmake_minimum_required(VERSION 2.8.12)
-project(ariles_ros)
-
-set(PROJECT_VERSION_MAJOR 1)
-set(PROJECT_VERSION_MINOR 1)
-set(PROJECT_VERSION_PATCH 1)
+cmake_minimum_required(VERSION 3.0)
+project(ariles_ros VERSION 1.3.1)
 
 
 option(ARILES_ROS_ENABLE_TESTS "Enable tests." OFF)
@@ -20,6 +16,7 @@ set(ARILES_BRIDGES_DEFAULT_MODE "OFF"   CACHE STRING "")
 set(ARILES_BRIDGE_yaml_cpp      "ON"    CACHE STRING "")
 set(ARILES_BRIDGE_ros           "ON"    CACHE STRING "")
 set(ARILES_BRIDGE_octave        "ON"    CACHE STRING "")
+set(ARILES_BRIDGE_array         "ON"    CACHE STRING "")
 
 set(ARILES_ADAPTER_EIGEN            "ON"    CACHE STRING "")
 set(ARILES_ADAPTER_BOOST_POINTER    "ON"    CACHE STRING "")
@@ -33,16 +30,6 @@ if(ARILES_ROS_ENABLE_TESTS)
 endif()
 
 add_subdirectory("${ARILES_DIR}" "./ariles")
-
-# prevents addition of setup scripts are added to binary package,
-# but also disables tests.
-#set(CATKIN_BUILD_BINARY_PACKAGE "ON")
-#
-#find_package(catkin REQUIRED)
-#
-#catkin_package(
-#    CFG_EXTRAS find_ariles.cmake
-#)
 
 
 set(ARILES_ROS_CONFIG_INSTALL_DESTINATION "${CMAKE_INSTALL_PREFIX}/share/${CMAKE_PROJECT_NAME}/cmake/")
