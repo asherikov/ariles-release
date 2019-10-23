@@ -10,8 +10,10 @@
 
 
 #include "utility.h"
-#include "all_enabled_bridges.h"
 
+#ifdef ARILES_BRIDGE_array
+#include "ariles/bridges/array.h"
+#endif
 
 #include "ariles/adapters_all.h"
 #include "ariles/ariles.h"
@@ -21,8 +23,8 @@
 // TYPES
 // ===============================================================
 
-#include "types/pointers_scalar.h"
-
+#include "types/complex_auto_declare.h"
+#include "types/empty.h"
 
 
 // ===============================================================
@@ -31,10 +33,7 @@
 
 
 #include "fixtures/initializers.h"
-#include "fixtures/000_basic_interface.h"
-#include "fixtures/001_constructor_interface.h"
-#include "fixtures/002_comparison.h"
-#include "fixtures/004_comparison_equivalence.h"
+#include "fixtures/013_write_array.h"
 
 
 // ===============================================================
@@ -42,9 +41,7 @@
 // ===============================================================
 
 #define ARILES_TESTS(BRIDGE_ID, NAMESPACE, INITIALIZER) \
-    ARILES_FIXTURE_TEST_CASE(BasicInterfaceFixture, BRIDGE_ID, NAMESPACE, ConfigurablePointersScalar, INITIALIZER) \
-    ARILES_FIXTURE_TEST_CASE(ConstructorInterfaceFixture, BRIDGE_ID, NAMESPACE, ConfigurablePointersScalar, INITIALIZER) \
-    ARILES_FIXTURE_TEST_CASE(ComparisonSimpleFixture, BRIDGE_ID, NAMESPACE, ConfigurablePointersScalar, INITIALIZER) \
-    ARILES_FIXTURE_TEST_CASE(ComparisonMultiFixture, BRIDGE_ID, NAMESPACE, ConfigurablePointersScalar, INITIALIZER)
+    ARILES_FIXTURE_TEST_CASE(ArrayFixture, BRIDGE_ID, NAMESPACE, ConfigurableComplex, INITIALIZER) \
+    ARILES_FIXTURE_TEST_CASE(ArrayFixture, BRIDGE_ID, NAMESPACE, ConfigurableEmpty, INITIALIZER)
 
 #include "instantiate.h"
