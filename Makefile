@@ -1,10 +1,21 @@
 VERSION?="XXX__version_not_set__XXX"
 
+help:
+	cat Makefile
+
 update:
 	git fetch --all
 	git rm --ignore-unmatch -rf ariles
-	git read-tree --prefix=ariles -u origin/master
+	git read-tree --prefix=ariles -u ${VERSION}
 	${MAKE} cleanup
+
+update_head:
+	${MAKE} update VERSION="origin/master"
+
+update_version: update
+	sed -i -e "s=<version>[0-9]*\.[0-9]*\.[0-9]*</version>=<version>${VERSION}</version>=" package.xml
+	sed -i -e "s=\(project([a-zA-Z0-9_-]* VERSION\) [0-9]*\.[0-9]*\.[0-9]*)=\1 ${VERSION})=" CMakeLists.txt
+
 
 cleanup:
 	git rm -rf --ignore-unmatch ariles/bridges/jsonnet/jsonnet
@@ -23,9 +34,11 @@ clean:
 	rm -Rf obj*
 
 release:
+	# 0. update_version
 	# 1. Add Forthcoming section to the changelog
 	# 2. Commit changelog
 	catkin_prepare_release -t 'ros-' --version "${VERSION}" -y
+	# 4. bloom-release --rosdistro melodic --track melodic ariles_ros
 
 
 #==============================================
