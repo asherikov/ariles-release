@@ -2,6 +2,13 @@
 Changelog for package ariles_ros
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+1.3.1 (2019-10-23)
+------------------
+* Sync to 1.3.1
+* Fix bugs in cmake scripts.
+* Enable 'array' bridge.
+
+
 1.1.5 (2019-06-04)
 ------------------
 * Sync to 1.1.5.
