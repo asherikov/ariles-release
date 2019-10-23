@@ -41,6 +41,12 @@ namespace ariles_tests
                 // -------
 
                 compare(configurable_out, configurable_in);
+
+                ariles::ComparisonParameters param;
+                param.double_tolerance_ = g_tolerance;
+                param.compare_number_of_entries_ = true;
+                param.throw_on_error_ = true;
+                BOOST_CHECK(configurable_out.arilesCompare(configurable_in, param));
             }
     };
 
@@ -65,8 +71,8 @@ namespace ariles_tests
 
                 BOOST_CHECK_NO_THROW(
                     typename t_Bridge::Writer writer(getWriterInitializer("configurable_match_multi.cfg"));
-                    configurable_out1.template writeConfig(writer, "node1");
-                    configurable_out2.template writeConfig(writer, "node2");
+                    configurable_out1.writeConfig(writer, "node1");
+                    configurable_out2.writeConfig(writer, "node2");
                 );
 
                 // -------
@@ -76,14 +82,21 @@ namespace ariles_tests
 
                 BOOST_CHECK_NO_THROW(
                     typename t_Bridge::Reader reader(getReaderInitializer("configurable_match_multi.cfg"));
-                    configurable_in1.template readConfig(reader, "node1");
-                    configurable_in2.template readConfig(reader, "node2");
+                    configurable_in1.readConfig(reader, "node1");
+                    configurable_in2.readConfig(reader, "node2");
                 );
 
                 // -------
 
                 compare(configurable_out1, configurable_in1);
                 compare(configurable_out2, configurable_in2);
+
+                ariles::ComparisonParameters param;
+                param.double_tolerance_ = g_tolerance;
+                param.compare_number_of_entries_ = true;
+                param.throw_on_error_ = true;
+                BOOST_CHECK(configurable_out1.arilesCompare(configurable_in1, param));
+                BOOST_CHECK(configurable_out2.arilesCompare(configurable_in2, param));
             }
     };
 }
